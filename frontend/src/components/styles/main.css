@@ -1,0 +1,21 @@
+*{
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+		overflow-x:hidden;
+}
+
+.main-container{
+		height:100vh;
+		width:100%;
+		display:flex;
+		font-family: 'Poppins',sans-serif;
+}
+
+@media(max-width:1300px){
+		.sidebar{
+				
+				transform:translateY(-100%);
+		}	
+}
+

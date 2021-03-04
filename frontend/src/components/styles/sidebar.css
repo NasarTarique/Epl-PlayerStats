@@ -1,0 +1,34 @@
+.sidebar{
+		height:100%;
+		width:300px;
+		position:relative;
+		background-color:#1C192D;
+}
+.sidebar-container{
+		padding:4rem 2rem 4rem 2rem;
+		position:absolute;
+		top:10%;
+}
+.slogo svg{
+		display:block;
+		margin:auto;
+}
+.slogo svg:hover{
+		cursor:pointer;
+}
+.sidebar-container ul{
+		list-style:none;
+		font-size: 20px;
+		padding-top:3rem;
+}
+.sidebar-container li {
+		padding:1rem;
+		letter-spacing:8%;
+}
+.sidebar-container a{
+		text-decoration:none;
+		color: white;
+}
+.sidebar-container a:hover{
+		color:#FF3939;
+}

@@ -1,0 +1,41 @@
+.home-container{
+		flex:auto;
+		display:flex;
+}
+
+.home{
+		height:50%;
+		align-items:center;
+		justify-content:center;
+		max-width:900px;
+		margin:auto;
+}
+.underline{
+		padding:0.7rem 1rem 2rem 0rem;
+		color:#1C192D;
+		font-size:58px;
+}
+.Heading1{
+		background-color:#FF3939;
+		background-repeat: no-repeat;
+		padding-right:1rem;
+}
+.home p{
+		padding:0.7rem 1rem 2rem 0rem;
+		color:#1C192D;
+
+}
+.home a{
+		background-color:#1C192D;
+		text-decoration:none;
+		color:white;
+		padding:0.7rem 1.5rem 0.7rem 1.5rem;
+		border-radius:5px;
+}
+.home svg{
+		position:absolute;
+}
+.home a:hover{
+		color:#FF3939;
+		
+}
