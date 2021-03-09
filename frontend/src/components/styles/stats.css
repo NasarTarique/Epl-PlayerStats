@@ -1,0 +1,89 @@
+.stats-container {
+  width: 100%;
+}
+.stats {
+  max-width: 900px;
+  margin: auto;
+  padding-top: 3rem;
+  color: #1c192d;
+}
+.stats h1 {
+  padding: 1rem;
+  font-size: 48px;
+}
+.stats h1::after {
+  content: "";
+  background: #ff3939;
+  display: block;
+  height: 10px;
+  width: 180px;
+}
+/* filter */
+.filter-container {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+select {
+		position:relative;
+  width: 300px;
+  background-color: white;
+  border: 3px solid #1c192d;
+  border-radius: 5px;
+  color: #1c192d;
+  padding: 1rem;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+}
+.pos-filter::after, .team-filter::after{
+		content:'\25bc';
+		transform : translateX(-110%);
+		color:#1c192d;
+		height:20px;
+		width:20px;
+		display:inline-block;
+
+
+}
+
+/*player list*/
+.player-thumbnail {
+  height: 100px;
+  width: 80px;
+}
+.player-thumbnail img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.players-list {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.player {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  border: 2px solid #1c192d;
+  border-radius: 10px;
+}
+.player div {
+  padding: 1rem 0.3rem 1rem 0.3rem;
+}
+.datatag::after {
+  content: "";
+  display: block;
+  background: #ff3939;
+  height: 3px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  width: 60px;
+}
+.datavalue {
+  font-weight: 500;
+}

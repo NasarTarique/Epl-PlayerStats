@@ -10,15 +10,17 @@
 		max-width:900px;
 		margin:auto;
 }
-.underline{
+.heading1{
 		padding:0.7rem 1rem 2rem 0rem;
 		color:#1C192D;
 		font-size:58px;
 }
-.Heading1{
-		background-color:#FF3939;
-		background-repeat: no-repeat;
-		padding-right:1rem;
+.heading1::after{
+		content:'';
+		background:#FF3939;
+		display:block;
+		height:10px;
+		width:350px;
 }
 .home p{
 		padding:0.7rem 1rem 2rem 0rem;

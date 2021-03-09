@@ -10,12 +10,19 @@
 		width:100%;
 		display:flex;
 		font-family: 'Poppins',sans-serif;
+		position:relative;
+}
+.hamburger{
+		position:absolute;
+		top:0;
+		left: 0;
+		padding:1rem;
+		font-size:30px;
+		z-index:999999;
 }
 
-@media(max-width:1300px){
-		.sidebar{
-				
-				transform:translateY(-100%);
-		}	
+.hamburger i:hover{
+		cursor:pointer;
+		color:#FF3939;
 }
 

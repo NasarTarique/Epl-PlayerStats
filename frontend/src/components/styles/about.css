@@ -1,0 +1,20 @@
+.about-container {
+  width: 100%;
+}
+.about {
+  max-width: 900px;
+  margin: auto;
+  padding-top: 3rem;
+  color: #1c192d;
+}
+.about h1 {
+  padding: 1rem;
+  font-size: 48px;
+}
+.about h1::after {
+  content: "";
+  background: #ff3939;
+  display: block;
+  height: 10px;
+  width: 180px;
+}

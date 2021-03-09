@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.index),
     path('fantasy/', views.index),
     path('about/', views.index),
-    path('stats/', views.index)
+    path('stats/', views.index),
+    path('compare/', views.index)
 ]

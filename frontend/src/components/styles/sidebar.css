@@ -3,6 +3,8 @@
 		width:300px;
 		position:relative;
 		background-color:#1C192D;
+		transition:transform 300ms ease-in-out;
+		z-index:9999;
 }
 .sidebar-container{
 		padding:4rem 2rem 4rem 2rem;
@@ -31,4 +33,13 @@
 }
 .sidebar-container a:hover{
 		color:#FF3939;
+}
+
+@media(max-width:1300px){
+		.sidebar{
+				position:absolute;
+				left:0;
+
+		}
+
 }
