@@ -4,8 +4,9 @@ import Sidebar from "./Sidebar.js";
 import Home from "./Home.js";
 import About from "./About.js";
 import Fantasy from "./Fantasy.js";
-import Compare from "./Compare"
+import Compare from "./Compare";
 import Stats from "./Stats.js";
+import Player from "./Player.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "./store";
 import { Provider } from "react-redux";
@@ -16,19 +17,26 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="main-container">
-				<Sidebar />
+          <Sidebar />
           <Switch>
-            <Route exact path="/"> <Home /> </Route> <Route path="/about"> <About />
+            <Route exact path="/">
+              {" "}
+              <Home />{" "}
+            </Route>{" "}
+            <Route path="/about">
+              {" "}
+              <About />
             </Route>
             <Route path="/fantasy">
               <Fantasy />
             </Route>
-            <Route path="/stats">
+            <Route exact path="/stats">
               <Stats />
             </Route>
             <Route path="/compare">
-					<Compare />
+              <Compare />
             </Route>
+            <Route path="/stats/:id" children={<Player />}></Route>
           </Switch>
         </div>
       </Router>
@@ -36,7 +44,6 @@ function App() {
   );
 }
 
-
-export default App; 
+export default App;
 const container = document.getElementById("app");
 render(<App />, container);

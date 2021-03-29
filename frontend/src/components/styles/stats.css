@@ -67,12 +67,12 @@ select {
 }
 .player {
   display: flex;
-  flex-grow: 1;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   border: 2px solid #1c192d;
   border-radius: 10px;
 }
 .player div {
+		flex-grow:1;
   padding: 1rem 0.3rem 1rem 0.3rem;
 }
 .datatag::after {
@@ -86,4 +86,46 @@ select {
 }
 .datavalue {
   font-weight: 500;
+}
+/* pagination */
+.pagination {
+		width:100%;
+		margin:auto;
+		min-height:70px;
+		padding:1rem;
+		max-width:900px;
+		display:flex;
+		justify-content:space-between;
+}
+
+.left-page, .right-page{
+		color:#1c192d;
+}
+.left-page::before{
+		content:"\25C4";
+		font-size:30px;
+}
+.left-page:hover , .right-page:hover{
+		color:#ff3939;
+		cursor:pointer;
+}
+.right-page::before{
+		content:"\25BA";
+		font-size:30px;
+}
+.page-button{
+		display:flex;
+		gap:2px;
+		align-items:center;
+}
+.page-button > span{
+		width:20px;
+		background-color:#1c192d;
+		color:white;
+		padding:5px;
+}
+
+.page-button > span:hover{
+		scale:1.09;
+		cursor:pointer;
 }

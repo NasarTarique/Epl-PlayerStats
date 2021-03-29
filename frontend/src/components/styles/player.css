@@ -1,0 +1,26 @@
+.player-stats-container {
+  width: 100%;
+}
+.player-stats {
+  max-width: 900px;
+  margin: auto;
+  padding-top: 3rem;
+  color: #1c192d;
+}
+.player-stats> h3 {
+  padding: 1rem;
+  font-size: 48px;
+}
+.player-stats > h3::after {
+  content: "";
+  background: #ff3939;
+  display: block;
+  height: 10px;
+  width: 180px;
+}
+.player-stats-box{
+		padding:2rem;
+		margin:1rem;
+		border:2px solid black; 
+
+}
