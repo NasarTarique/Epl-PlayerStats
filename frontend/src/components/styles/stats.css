@@ -46,7 +46,15 @@ select {
 
 
 }
-
+.filter-button >p{
+		color:white;
+		padding: 0.5rem 1rem 0.5rem 1rem;
+		background-color:#1c192d;
+}
+.filter-button > p:hover{
+		cursor:pointer;
+		background-color:#ff3939;
+}
 /*player list*/
 .player-thumbnail {
   height: 100px;

@@ -4,18 +4,57 @@ from rest_framework import generics , status, viewsets
 from rest_framework.response import Response
 
 from .models import Players , Gameweeks , Prevseason 
-from .serializers import PlayerSerializer, ListPlayerSerializer ,UpdatePlayerSerializer
+from .serializers import PlayerSerializer, ListPlayerSerializer ,UpdatePlayerSerializer , FilterPlayerSerializer
 
 import json
+import math
 
 
-# class UpdatePlayerViews(APIView):
-#     serializer_class  = UpdatePlayerSerializer
-#     def post(self, request, format=None):
-#         jflile = request.data.get('playersjson')
-#         playersdata = json.load(jfile)
-# 
-# class FilterPlayersViewset(viewsets.ReadOnlyModelViewset):
+class FilterPlayerViews(APIView):
+    serializer_class = FilterPlayerSerializer
+    def post(self,request, format=None):
+        pos = request.data.get('pos')
+        team = request.data.get('team')
+        page = request.data.get('page')
+        if(page==''):
+            page=1
+        else:
+            page = int(float(page))
+        if pos=="Any Position":
+            playerobj = Players.objects.filter(team=team)
+        elif team=="All Teams":
+            playerobj = Players.objects.filter(position=pos)
+        else:
+            playerobj = Players.objects.filter(position=pos).filter(team=team)
+        serializer = ListPlayerSerializer(playerobj, many=True)
+        pg = math.floor(len(playerobj)/30)
+        if page>pg+1 and page<1:
+            return Response({"detail":"Invalid page."},status=status.HTTP_400_NOT_FOUND)
+        else:
+            res = serializer.data[(page-1)*30:(page*30)]
+
+        prevlink = ''
+        nextlink = ''
+        if page+1 < pg:
+            prevlink = "http://localhost:8000/api/filter"
+        if page>1:
+            nextlink = "http://localhost:8000/api/filter"
+
+        data = {
+            "count":len(playerobj),
+            "next":nextlink,
+            "previous":prevlink,
+            "results":res
+        } 
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class GetTeamsViews(APIView):
+    def get(self, request, format=None):
+        teams = list(set(Players.objects.values_list('team', flat=True)))
+        res = {"teams":teams}
+        return Response(res, status=status.HTTP_200_OK)
+
 
 class GetPlayersViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Players.objects.all()

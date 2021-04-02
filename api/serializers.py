@@ -2,6 +2,11 @@ from rest_framework import serializers
 from .models import Players , Gameweeks , Prevseason
 
 
+class FilterPlayerSerializer(serializers.Serializer):
+    pos = serializers.CharField(max_length=20)
+    team = serializers.CharField(max_length=20)
+    page = serializers.CharField(max_length=20, allow_blank=True, default="1")
+
 
 class GameweekSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,4 +1,4 @@
-import {GET_PLAYERS ,GET_PLAYER_DETAIL} from "../actions/types.js"
+import {GET_PLAYERS, GET_PLAYER_DETAIL, FILTER_PLAYERS} from "../actions/types.js"
 
 const initialState = {
 		players:{},
@@ -16,6 +16,11 @@ export default function(state=initialState,action){
 						return {
 								...state,
 								playerdetail:action.payload,
+						}
+				case FILTER_PLAYERS:
+						return {
+								...state,
+								players:action.payload,
 						}
 				default:
 						return state
