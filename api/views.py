@@ -131,7 +131,7 @@ class AddPlayersViews(APIView):
                         ictindex =float(prev["ictindex"]),
                         playerprev = player
                     )
-                prevseason.save()
+                    prevseason.save()
             except KeyError:
                 print("no prevseason")
         return Response({"message":"Players Detail added succesfully"}, status=status.HTTP_200_OK)

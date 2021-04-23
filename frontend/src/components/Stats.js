@@ -200,7 +200,7 @@ function Stats(props) {
                 changeFilter({ ...filters, team: e.target.value })
               }
             >
-              <option value="All teams">All Teams</option>
+					<option value="All Teams">All Teams</option>
               {teamlist()}
             </select>
           </div>
@@ -210,13 +210,15 @@ function Stats(props) {
                 changePage(1);
                 if (
                   filters.pos === "Any Position" &&
-                  filters.team === "Any Team"
+                  filters.team === "All Teams"
                 ) {
                   switchFilter(false);
                   props.getPlayers(page);
                 }
+					  else{
 					  switchFilter(true);
                 props.filterPlayers(filters.pos, filters.team, page);
+					  }
               }}
             >
               Filter
