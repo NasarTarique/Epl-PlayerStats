@@ -5,6 +5,7 @@ from .models import Players , Gameweeks , Prevseason
 class FilterPlayerSerializer(serializers.Serializer):
     pos = serializers.CharField(max_length=20)
     team = serializers.CharField(max_length=20)
+    name = serializers.CharField(max_length=100)
     page = serializers.CharField(max_length=20, allow_blank=True, default="1")
 
 

@@ -28,12 +28,13 @@ export function getPlayers(page) {
   };
 }
 
-export function filterPlayers(pos, team, page) {
+export function filterPlayers(pos, team, name, page) {
   const requestjson = {
     method: "POST",
     body: JSON.stringify({
       pos: pos,
       team: team,
+      name:name,
       page:page,
     }),
     headers: {

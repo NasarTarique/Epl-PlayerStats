@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from rest_framework.views import APIView
 from rest_framework import generics , status, viewsets
 from rest_framework.response import Response
@@ -15,17 +16,35 @@ class FilterPlayerViews(APIView):
     def post(self,request, format=None):
         pos = request.data.get('pos')
         team = request.data.get('team')
+        name = request.data.get('name')
+        if(len(name)>0):
+            query = SearchQuery(name)
+            vector = SearchVector('name')
         page = request.data.get('page')
         if(page==''):
             page=1
         else:
             page = int(float(page))
-        if pos=="Any Position":
-            playerobj = Players.objects.filter(team=team)
+        if pos=="Any Position" and team=="All Teams":
+            if(len(name)>0):
+                playerobj = Players.objects.annotate(search=vector).filter(search=name)
+            else:
+                playerobj = Players.objects.all()
+        elif pos=="Any Position":
+            if(len(name)>0):
+                playerobj = Players.objects.annotate(search=vector).filter(search=name).filter(team=team)
+            else:
+                playerobj = Players.objects.filter(team=team)
         elif team=="All Teams":
-            playerobj = Players.objects.filter(position=pos)
+            if(len(name)>0):
+                playerobj = Players.objects.annotate(rank=SearchRank(vector , query)).order_by('-rank').filter(position=pos)
+            else:
+                playerobj = Players.objects.filter(position=pos)
         else:
-            playerobj = Players.objects.filter(position=pos).filter(team=team)
+            if(len(name)>0):
+                playerobj = Players.objects.annotate(rank=SearchRank(vector , query)).order_by('-rank').filter(position=pos).filter(team=team)
+            else:
+                playerobj = Players.objects.filter(position=pos).filter(team=team)
         serializer = ListPlayerSerializer(playerobj, many=True)
         pg = math.floor(len(playerobj)/30)
         if page>pg+1 and page<1:

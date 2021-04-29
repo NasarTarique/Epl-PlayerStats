@@ -9,6 +9,7 @@ function Stats(props) {
   const [filters, changeFilter] = useState({
     pos: "Any Position",
     team: "All Teams",
+    name: "",
   });
   const [teams, changeTeam] = useState([]);
   const [filterOn, switchFilter] = useState(false);
@@ -22,7 +23,7 @@ function Stats(props) {
   }, []);
   useEffect(() => {
     if (filterOn) {
-      props.filterPlayers(filters.pos, filters.team, page);
+      props.filterPlayers(filters.pos, filters.team, filters.name, page);
     } else props.getPlayers(page);
   }, [page]);
 
@@ -89,6 +90,7 @@ function Stats(props) {
       }
     }
   };
+
   const playerrow = () => {
     if (!(JSON.stringify(props.players) == JSON.stringify({}))) {
       return props.players.results.map((player) => {
@@ -200,7 +202,7 @@ function Stats(props) {
                 changeFilter({ ...filters, team: e.target.value })
               }
             >
-					<option value="All Teams">All Teams</option>
+              <option value="All Teams">All Teams</option>
               {teamlist()}
             </select>
           </div>
@@ -214,11 +216,15 @@ function Stats(props) {
                 ) {
                   switchFilter(false);
                   props.getPlayers(page);
+                } else {
+                  switchFilter(true);
+                  props.filterPlayers(
+                    filters.pos,
+                    filters.team,
+                    filters.name,
+                    page
+                  );
                 }
-					  else{
-					  switchFilter(true);
-                props.filterPlayers(filters.pos, filters.team, page);
-					  }
               }}
             >
               Filter
@@ -258,8 +264,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPlayers: (page) => dispatch(getPlayers(page)),
-    filterPlayers: (pos, team, page) =>
-      dispatch(filterPlayers(pos, team, page)),
+    filterPlayers: (pos, team, name, page) =>
+      dispatch(filterPlayers(pos, team, name, page)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Stats);
